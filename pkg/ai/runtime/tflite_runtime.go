@@ -6,6 +6,13 @@ type TFLiteRuntime struct {
     modelPath string
 }
 
+
+func NewTFLiteRuntTime(modelPath string) *TFLiteRuntime {
+    return &TFLiteRuntime{
+        modelPath: modelPath,
+    }
+}
+
 // LoadModel loads a TensorFlow Lite model
 func (t *TFLiteRuntime) LoadModel(path string) error {
     t.modelPath = path

@@ -1,11 +1,17 @@
 package config
 
+import "github.com/caarlos0/env"
+
 type Config struct {
-	ModelPath string `json:"model_path"`
-	Port      int    `json:"port"`
+	ONNXModelPath       string `env:"ONNX_MODEL_PATH" envDefault:"../../model_examples/onnx.onnx"`
+	TensorFlowModelPath string `env:"TENSOR_FLOW_MODEL_PATH" envDefault:"../../model_examples/tensorflow.tensorflow"`
+	Port                string `env:"PORT" envDefault:":8083"`
 }
 
-// InitConfig get the env configutation
-func InitConfig() *Config {
-	return &Config{}
+func ReadEnvConfig() (*Config, error) {
+	cfg := &Config{}
+	if err := env.Parse(cfg); err != nil {
+		return nil, err
+	}
+	return cfg, nil
 }

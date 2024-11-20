@@ -16,5 +16,4 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("read env config failed")
 	}
-
 }
